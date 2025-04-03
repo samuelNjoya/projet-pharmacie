@@ -346,7 +346,7 @@ public class Company extends javax.swing.JFrame {
         jLabel6.setText("MEDECINE");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 73, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 910, 530));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 890, 530));
 
         pack();
         setLocationRelativeTo(null);

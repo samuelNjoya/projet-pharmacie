@@ -21,6 +21,7 @@ public class medecine1 extends javax.swing.JFrame {
     public medecine1() {
         initComponents();
         setDetailMedicineTable();
+        getCompany();
         
        btn_add.setEnabled(true);
        btn_delete.setEnabled(false);
@@ -182,6 +183,27 @@ public class medecine1 extends javax.swing.JFrame {
        model.setRowCount(0);
        
    }
+     
+     //GET COMPANY
+     public void getCompany(){
+          try {
+            Connection con = DBconnexion.getConnection();
+            String sql = "select * from company";
+            PreparedStatement ps = con.prepareStatement(sql);
+           
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+     
+                String Mycomp = rs.getString("name");
+                cmb_cmpy.addItem(Mycomp);
+               
+           }
+            
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(this, e);
+       }
+     }
 
   
     @SuppressWarnings("unchecked")
@@ -282,7 +304,6 @@ public class medecine1 extends javax.swing.JFrame {
 
         cmb_cmpy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cmb_cmpy.setForeground(new java.awt.Color(0, 204, 51));
-        cmb_cmpy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SMART CMP", "HTP WES", "SMART HPT", "H1 CMPY", " " }));
         jPanel2.add(cmb_cmpy, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 152, 231, -1));
 
         btn_delete.setBackground(new java.awt.Color(0, 153, 51));
