@@ -25,10 +25,10 @@ public class splash extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         myProgress = new javax.swing.JProgressBar();
         percentage = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -36,19 +36,13 @@ public class splash extends javax.swing.JFrame {
         myProgress.setBackground(new java.awt.Color(0, 153, 51));
         myProgress.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         myProgress.setForeground(new java.awt.Color(0, 0, 204));
-        jPanel1.add(myProgress, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 427, -1));
+        jPanel1.add(myProgress, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 427, 30));
 
         percentage.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         percentage.setForeground(new java.awt.Color(0, 153, 51));
         percentage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         percentage.setText("0%");
-        jPanel1.add(percentage, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 58, 273, 211));
-
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 153, 51));
-        jLabel2.setText("X");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 20, 24, 11));
+        jPanel1.add(percentage, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 273, 211));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
@@ -60,14 +54,14 @@ public class splash extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(443, 354));
+        setSize(new java.awt.Dimension(355, 315));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -125,7 +119,6 @@ public class splash extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar myProgress;

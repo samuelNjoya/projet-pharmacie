@@ -143,8 +143,11 @@ public class selling extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 51));
@@ -190,7 +193,7 @@ public class selling extends javax.swing.JFrame {
                 btn_clearActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 82, 40));
+        jPanel2.add(btn_clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 82, 40));
 
         btn_add.setBackground(new java.awt.Color(0, 153, 51));
         btn_add.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -201,19 +204,19 @@ public class selling extends javax.swing.JFrame {
                 btn_addActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 130, 40));
+        jPanel2.add(btn_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 130, 40));
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 153, 51));
         jLabel16.setText("BILL");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 157, 20));
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, 157, 20));
 
         lbl_date.setBackground(new java.awt.Color(255, 255, 255));
         lbl_date.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbl_date.setForeground(new java.awt.Color(0, 153, 51));
         lbl_date.setText("DATE");
-        jPanel2.add(lbl_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 247, -1));
+        jPanel2.add(lbl_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 170, -1));
 
         tbl_MedicineDetail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -237,7 +240,7 @@ public class selling extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 153, 51));
         jLabel18.setText("BILLING");
-        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 0, 247, -1));
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 247, -1));
 
         btn_add1.setBackground(new java.awt.Color(0, 153, 51));
         btn_add1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -248,13 +251,13 @@ public class selling extends javax.swing.JFrame {
                 btn_add1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 510, 82, 40));
+        jPanel2.add(btn_add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, 82, 40));
 
         txt_area_bill.setColumns(20);
         txt_area_bill.setRows(5);
         jScrollPane1.setViewportView(txt_area_bill);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 320, 450, 180));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 520, 180));
 
         txt_price_bill.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jPanel2.add(txt_price_bill, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 115, -1));
@@ -265,29 +268,51 @@ public class selling extends javax.swing.JFrame {
         jLabel12.setText("PRICE");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 101, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 860, 570));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 850, 550));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("COMPANY");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 23, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("SELLING");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 61, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("AGENT");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 99, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 600));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("x");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 20, -1));
+        jLabel1.getAccessibleContext().setAccessibleName("x");
 
-        pack();
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("BACK");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 620));
+
+        setSize(new java.awt.Dimension(977, 615));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
@@ -333,6 +358,16 @@ public class selling extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_add1ActionPerformed
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        medecine1 md = new medecine1();
+        md.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -372,11 +407,13 @@ public class selling extends javax.swing.JFrame {
     private javax.swing.JButton btn_add;
     private javax.swing.JButton btn_add1;
     private javax.swing.JButton btn_clear;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

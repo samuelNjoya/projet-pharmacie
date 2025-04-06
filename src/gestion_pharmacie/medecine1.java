@@ -1,10 +1,13 @@
 
 package gestion_pharmacie;
 
+import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -68,20 +71,26 @@ public class medecine1 extends javax.swing.JFrame {
           boolean isMedicine = false;
           
           
-          java.util.Date uFabDate = date_fab.getDate();
+        /* java.util.Date uFabDate = date_fab.getDate();
           java.util.Date uExpDate = date_exp.getDate();
           
           Long l1 = uFabDate.getTime();
           Long l2 = uExpDate.getTime();
           
           java.sql.Date fabDate_M = new  java.sql.Date(l1);
-          java.sql.Date expDate_M = new  java.sql.Date(l2);
+          java.sql.Date expDate_M = new  java.sql.Date(l2); */
+          
+          
           
         String id_M = txt_id.getText();
         String name_M = txt_name.getText();
         String qty_M = txt_qty.getText();
         String price_M = txt_price.getText();
         String company_M = cmb_cmpy.getSelectedItem().toString();
+        
+       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+       String fabDate_M = sdf.format(date_fab.getDate());
+       String expDate_M = sdf.format(date_exp.getDate());
         
         try 
         {
@@ -92,8 +101,10 @@ public class medecine1 extends javax.swing.JFrame {
             ps.setString(1, name_M);
             ps.setString(2, qty_M);
             ps.setString(3, price_M);
-            ps.setDate(4, fabDate_M);
-            ps.setDate(5, expDate_M);
+           /* ps.setDate(4,  fabDate_M);
+            ps.setDate(5, expDate_M);*/
+            ps.setString(4,  fabDate_M);
+            ps.setString(5, expDate_M);
             ps.setString(6, company_M);
             
           int RowCount =   ps.executeUpdate();
@@ -113,6 +124,7 @@ public class medecine1 extends javax.swing.JFrame {
     
     //UPDATE
      public  void updateMedicine(){
+       
         java.util.Date uFabDate = date_fab.getDate();
         java.util.Date uExpDate = date_exp.getDate();
           
@@ -153,6 +165,58 @@ public class medecine1 extends javax.swing.JFrame {
       }
    }
    
+     public void updateMedicine1() {
+    java.util.Date uFabDate = date_fab.getDate();
+    java.util.Date uExpDate = date_exp.getDate();
+
+    // Vérifiez si les dates sont nulles
+    if (uFabDate == null || uExpDate == null) {
+        JOptionPane.showMessageDialog(this, "Veuillez sélectionner des dates valides.");
+        return;
+    }
+
+    // Afficher les dates pour débogage
+    System.out.println("Date de fabrication : " + uFabDate);
+    System.out.println("Date d'expiration : " + uExpDate);
+
+   // java.sql.Date fabDate_M = new java.sql.Date(uFabDate.getTime());
+    //java.sql.Date expDate_M = new java.sql.Date(uExpDate.getTime());
+
+    // Vérifiez les valeurs après conversion
+   // System.out.println("Date de fabrication (SQL) : " + fabDate_M);
+   // System.out.println("Date d'expiration (SQL) : " + expDate_M);
+
+    String id_M = txt_id.getText();
+    String name_M = txt_name.getText();
+    String qty_M = txt_qty.getText();
+    String price_M = txt_price.getText();
+    String company_M = cmb_cmpy.getSelectedItem().toString();
+    
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String fabDate_M = sdf.format(date_fab.getDate());
+    String expDate_M = sdf.format(date_exp.getDate());
+
+    try (Connection con = DBconnexion.getConnection();
+         PreparedStatement ps = con.prepareStatement("UPDATE medicine SET name=?, quantity=?, price=?, fab_date=?, exp_date=?, company=? WHERE id_medicine=?")) {
+
+        ps.setString(1, name_M);
+        ps.setString(2, qty_M);
+        ps.setString(3, price_M);
+        ps.setString(4, fabDate_M);
+        ps.setString(5, expDate_M);
+        ps.setString(6, company_M);
+        ps.setString(7, id_M);
+
+        int rowsUpdated = ps.executeUpdate();
+        if (rowsUpdated > 0) {
+            JOptionPane.showMessageDialog(this, "Mise à jour réussie.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Aucun enregistrement trouvé avec cet ID : " + id_M);
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Erreur lors de la mise à jour : " + e.getMessage());
+    }
+}
      
      //DELETE
     public  void deleteMedicine(){
@@ -230,14 +294,22 @@ public class medecine1 extends javax.swing.JFrame {
         btn_update = new javax.swing.JButton();
         btn_add = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_MedicineDetail = new rojerusan.RSTableMetro();
+        jLabel18 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -271,10 +343,10 @@ public class medecine1 extends javax.swing.JFrame {
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 151, 101, -1));
 
         txt_price.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jPanel2.add(txt_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 155, 115, -1));
+        jPanel2.add(txt_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 115, -1));
 
         txt_qty.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jPanel2.add(txt_qty, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 129, 115, -1));
+        jPanel2.add(txt_qty, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 115, -1));
 
         txt_name.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jPanel2.add(txt_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 83, 115, -1));
@@ -299,7 +371,7 @@ public class medecine1 extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(0, 153, 51));
         jLabel14.setText("COMPANY");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 151, 101, -1));
-        jPanel2.add(date_exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 116, 231, 25));
+        jPanel2.add(date_exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 231, 25));
         jPanel2.add(date_fab, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 57, 231, 29));
 
         cmb_cmpy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -345,12 +417,6 @@ public class medecine1 extends javax.swing.JFrame {
         jLabel16.setText("MEDECINE LIST");
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 265, 157, 20));
 
-        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 153, 51));
-        jLabel17.setText("MANAGE MEDECINE");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 0, 247, -1));
-
         tbl_MedicineDetail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -369,38 +435,142 @@ public class medecine1 extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 700, 180));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 760, 510));
+        jLabel18.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 153, 51));
+        jLabel18.setText("MANAGE MEDECINE");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 247, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 760, 500));
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(0, 153, 51));
         jLabel5.setText("COMPANY");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 23, -1, -1));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(43, 43, 43))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addContainerGap())
+        );
+
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 160, 50));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(0, 153, 51));
         jLabel4.setText("SELLING");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 61, -1, -1));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel4)
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 160, 50));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(0, 153, 51));
         jLabel6.setText("AGENT");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 99, -1, -1));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel6)
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addContainerGap())
+        );
+
+        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 160, 50));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 160, 500));
+
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("x");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel7.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, 30, 60));
+
+        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 153, 51));
+        jLabel17.setText("PHARMARSMART");
+        jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 330, -1));
+
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 930, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 951, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -415,7 +585,7 @@ public class medecine1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_addActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-        updateMedicine();
+        updateMedicine1();
         clearTable();
        setDetailMedicineTable();
     }//GEN-LAST:event_btn_updateActionPerformed
@@ -434,8 +604,18 @@ public class medecine1 extends javax.swing.JFrame {
        txt_name.setText(model.getValueAt(rowNo, 1).toString());
        txt_qty.setText(model.getValueAt(rowNo, 2).toString());
        txt_price.setText(model.getValueAt(rowNo, 3).toString());
-       date_fab.setDateFormatString(model.getValueAt(rowNo, 4).toString());
-       date_exp.setDateFormatString(model.getValueAt(rowNo, 5).toString());
+       //date_fab.setDateFormatString(model.getValueAt(rowNo, 4).toString());
+      // date_exp.setDateFormatString(model.getValueAt(rowNo, 5).toString());
+        try {
+              java.util.Date df = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(rowNo, 4));
+               date_fab.setDate(df);
+              java.util.Date de = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(rowNo, 5));
+              date_fab.setDate(de);
+        } catch (Exception e) {
+           // JOptionPane.showMessageDialog(this, e);
+        }
+    
+      // date_exp.setDateFormatString(model.getValueAt(rowNo, 5).toString());
        cmb_cmpy.setSelectedItem(model.getValueAt(rowNo, 6).toString());
        
         
@@ -443,6 +623,28 @@ public class medecine1 extends javax.swing.JFrame {
        btn_delete.setEnabled(true);
        btn_update.setEnabled(true);
     }//GEN-LAST:event_tbl_MedicineDetailMouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        Company cp = new Company();
+        cp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        selling sl = new selling();
+        sl.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        Agents ag = new Agents();
+        ag.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -494,12 +696,19 @@ public class medecine1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
     private rojerusan.RSTableMetro tbl_MedicineDetail;
     private javax.swing.JTextField txt_id;
